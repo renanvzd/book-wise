@@ -2,7 +2,7 @@ import { Container, LoginButton, UserDetails } from "./styles"
 import { SignIn, SignOut } from "@phosphor-icons/react"
 import { Navigation } from "../Navigation"
 import { signOut, useSession } from "next-auth/react"
-// import { Avatar } from "../ui/Avatar"
+import { Avatar } from "../ui/Avatar"
 import { Text } from "../Typography"
 import { useRouter } from "next/router"
 
@@ -32,7 +32,7 @@ export const Sidebar = () => {
           </LoginButton>
         ) : (
           <UserDetails>
-            {/* <Avatar size="sm" src={user?.avatar_url} alt={user?.name} onClick={handleOpenProfile} css={{ cursor: "pointer" }} /> */}
+            <Avatar size="sm" src={user?.avatar_url} alt={user?.name} onClick={handleOpenProfile} css={{ cursor: "pointer" }} />
             <Text size="sm">{user?.name}</Text>
             <SignOut color="#F75A68" size={20} onClick={() => signOut()} />
           </UserDetails>
