@@ -30,7 +30,7 @@ export const LatestRatings = () => {
               id: "asdfgh",
               name: "John Doe",
               author: "John Doe",
-              summary: "John Doe",
+              summary: "Vade mecum ori talum Vade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talum",
               cover_url: "https://github.com/renanvzd.png",
               total_pages: 100,
             },
