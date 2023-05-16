@@ -2,9 +2,15 @@ import { PageTitle } from "../ui/PageTitle"
 import { Container } from "./styles"
 import { ChartLineUp } from "@phosphor-icons/react"
 import { Text } from "../Typography"
-import { RatingCard } from "../RatingCard"
+import { RatingCard, RatingWithAuthorAndBook } from "../RatingCard"
+import { useQuery } from "@tanstack/react-query"
+import { api } from "@/lib/axios"
 
 export const LatestRatings = () => {
+  const { data: ratings } = useQuery<RatingWithAuthorAndBook[]>(["latest-ratings"], async () => {
+    const { data } = await api.get("/ratings/latest");
+    return data?.ratings ?? []
+  })
 
   return (
     <Container>
@@ -15,27 +21,8 @@ export const LatestRatings = () => {
       <Text size="sm">Avaliações mais recentes</Text>
 
       <section>
-        {Array.from({ length: 20 }).map((_, i) => (
-          <RatingCard key={i} rating={{
-            id: "aa",
-            rate: 4,
-            user: {
-              id: "asdfgh",
-              email: "johndoe@gmail.com",
-              name: "John Doe",
-              avatar_url: "https://github.com/renanvzd.png",
-              created_at: new Date()
-            },
-            book: {
-              id: "asdfgh",
-              name: "John Doe",
-              author: "John Doe",
-              summary: "Vade mecum ori talum Vade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talumVade mecum ori talum",
-              cover_url: "https://github.com/renanvzd.png",
-              total_pages: 100,
-            },
-            created_at: new Date()
-          }} />
+        {ratings?.map(rating => (
+          <RatingCard key={rating.id} rating={rating} />
         ))}
       </section>
     </Container>
