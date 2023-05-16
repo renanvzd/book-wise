@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/react"
 import { Fragment, useState } from "react"
-// import { LoginDialog } from "../LoginDialog"
-// import { RatingForm } from "../RatingForm"
+import { LoginDialog } from "../LoginDialog"
+import { RatingForm } from "../RatingForm"
 import { Text } from "../Typography"
 import { Link } from "../ui/Link"
 import { RatingWithAuthor, UserRatingCard } from "../UserRatingCard"
@@ -23,7 +23,7 @@ export const BookRatings = ({ bookId, ratings }: BookRatingsProps) => {
     setShowForm(true)
   }
 
-  // const RatingWrapper = isAuthenticated ? Fragment : LoginDialog
+  const RatingWrapper = isAuthenticated ? Fragment : LoginDialog
 
   const sortedRatingsByDate = ratings.sort((a, b) => {
     return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
@@ -35,15 +35,15 @@ export const BookRatings = ({ bookId, ratings }: BookRatingsProps) => {
     <Container>
       <header>
         <Text>Avaliações</Text>
-        {/* {canRate && ( */}
-        {/* <RatingWrapper> */}
-        <Link withoutIcon onClick={handleRate} text="Avaliar" color="purple" />
-        {/* </RatingWrapper> */}
-        {/* )} */}
+        {canRate && (
+          <RatingWrapper>
+            <Link withoutIcon onClick={handleRate} text="Avaliar" color="purple" />
+          </RatingWrapper>
+        )}
       </header>
 
       <section>
-        {/* {showForm && <RatingForm bookId={bookId} onCancel={() => setShowForm(false)} />} */}
+        {showForm && <RatingForm bookId={bookId} onCancel={() => setShowForm(false)} />}
         {sortedRatingsByDate.map(rating => (
           <UserRatingCard key={rating.id} rating={rating} />
         ))}
